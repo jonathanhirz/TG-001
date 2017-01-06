@@ -1,0 +1,26 @@
+{
+  project : {
+    name : 'TG-001',
+    version : '0.0.1',
+    author : 'Jonathan Hirz',
+
+    app : {
+      name : 'TG-001',
+      package : 'com.jonathanhirz.TG-001'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      },
+      hxcpp : {
+        flags : ['-nocolor']
+      }
+    },
+
+    files : {
+      config : 'config.json',
+      assets : 'assets/'
+    }
+  }
+}
