@@ -1,7 +1,15 @@
 package states;
+
 import luxe.States;
+import luxe.Sprite;
+import luxe.Color;
+import luxe.Vector;
+
+import entity.*;
 
 class GameState extends State {
+
+    var player : Player;
 
     public function new( _name:String ) {
         super({ name:_name });
@@ -9,6 +17,7 @@ class GameState extends State {
 
     override function init() {
 
+        player = new Player();
 
     } //init
 
@@ -18,6 +27,8 @@ class GameState extends State {
     } //onenter
 
     override function onleave<T>( _value:T ) {
+
+        player.destroy();
 
 
     } //onleave
