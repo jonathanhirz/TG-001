@@ -51,13 +51,13 @@ class Main extends luxe.Game {
 
     function connect_input() {
 
-        Luxe.input.bind_key('up', Key.up);
+        // Luxe.input.bind_key('up', Key.up);
         Luxe.input.bind_key('up', Key.key_w);
-        Luxe.input.bind_key('right', Key.right);
+        // Luxe.input.bind_key('right', Key.right);
         Luxe.input.bind_key('right', Key.key_d);
-        Luxe.input.bind_key('down', Key.down);
+        // Luxe.input.bind_key('down', Key.down);
         Luxe.input.bind_key('down', Key.key_s);
-        Luxe.input.bind_key('left', Key.left);
+        // Luxe.input.bind_key('left', Key.left);
         Luxe.input.bind_key('left', Key.key_a);
         Luxe.input.bind_key('space', Key.space);
 

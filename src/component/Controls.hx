@@ -1,5 +1,7 @@
 package component;
 
+import slappy.Tools;
+
 import luxe.Component;
 import luxe.Entity;
 
@@ -29,37 +31,10 @@ class Controls extends Component {
 
     override function update( dt:Float ) {
 
-        if(Luxe.input.inputdown("up")) {
-            up_pressed = -1;
-        }
-        if(Luxe.input.inputreleased("up")) {
-            up_pressed = 0;
-        }
-        if(Luxe.input.inputdown("down")) {
-            down_pressed = 1;
-        }
-        if(Luxe.input.inputreleased("down")) {
-            down_pressed = 0;
-        }
-        if(Luxe.input.inputdown("left")) {
-            left_pressed = -1;
-        }
-        if(Luxe.input.inputreleased("left")) {
-            left_pressed = 0;
-        }
-        if(Luxe.input.inputdown("right")) {
-            right_pressed = 1;
-        }
-        if(Luxe.input.inputreleased("right")) {
-            right_pressed = 0;
-        }
-
-        player.acceleration.y = (up_pressed + down_pressed) * speed;
-        player.acceleration.x = (left_pressed + right_pressed) * speed;
-
+        player.acceleration.y = (-Tools.BoolToInt(Luxe.input.inputdown("up")) + Tools.BoolToInt(Luxe.input.inputdown("down"))) * speed;
+        player.acceleration.x = (-Tools.BoolToInt(Luxe.input.inputdown("left")) + Tools.BoolToInt(Luxe.input.inputdown("right"))) * speed;
 
     } //update
-
 
 
 } //Controls
