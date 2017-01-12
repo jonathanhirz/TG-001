@@ -8,6 +8,10 @@ import component.Controls;
 
 class Player extends Sprite {
 
+    public var acceleration : Vector = new Vector(0, 0);
+    var velocity : Vector = new Vector(0, 0);
+    var decel : Float = 0.8;
+
     public function new() {
 
         super({
@@ -22,7 +26,11 @@ class Player extends Sprite {
 
     override function update( dt:Float ) {
 
-
+        velocity.add(acceleration);
+        pos.add(velocity);
+        velocity.multiply(new Vector(decel, decel));
+        if(Math.abs(velocity.x) < 0.01) velocity.x = 0;
+        if(Math.abs(velocity.y) < 0.01) velocity.y = 0;
 
     } //update
 
