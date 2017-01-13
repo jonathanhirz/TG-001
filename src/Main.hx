@@ -18,8 +18,11 @@ class Main extends luxe.Game {
                 config.window.height = Std.int(config.user.window.height);
             }
         }
-
         config.window.title = config.user.window.title;
+
+        //assets preload
+        config.preload.textures.push({ id:"assets/map_01.png" });
+        config.preload.texts.push({ id:'assets/map_01.tmx' });
 
         return config;
 

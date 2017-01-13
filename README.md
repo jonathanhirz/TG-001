@@ -1,10 +1,10 @@
 TG-001: top down shooter
 
-* [ ] player sprite + movement
+* [x] player sprite + movement
+* [x] tilemap
+* [ ] colliders on player and enemies
 * [ ] shooting bullets at aim cursor (mouse)
 * [ ] pool of enemies
-* [ ] colliders on player and enemies
 * [ ] enemies can die and respawn
-* [ ] tilemap
 * [ ] enemies can see player or not (vision cone?)
 * [ ] enemies chase player if they can see
