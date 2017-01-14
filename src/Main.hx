@@ -9,7 +9,8 @@ class Main extends luxe.Game {
 
     var machine : States;
     public static var tilemap_colliders : Array<Shape> = [];
-    var draw_colliders : Bool = false;
+    //DEBUG
+    public static var draw_colliders : Bool = false;
 
     override function config( config:luxe.GameConfig ) {
 
@@ -56,6 +57,7 @@ class Main extends luxe.Game {
 
     override function update( dt:Float ) {
 
+        //DEBUG
         if(draw_colliders) {
             for(coll in tilemap_colliders) draw_collider_polygon(cast coll);
         }
@@ -76,6 +78,7 @@ class Main extends luxe.Game {
 
     } //connect_input
 
+    //DEBUG
     function draw_collider_polygon(poly:Polygon) {
 
         var geom = Luxe.draw.poly({

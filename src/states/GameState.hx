@@ -73,8 +73,6 @@ class GameState extends State {
             Main.tilemap_colliders.push(Polygon.rectangle(bound.x, bound.y, bound.w, bound.h, false));
         }
 
-        trace(Main.tilemap_colliders);
-
     } //create_tilemap_colliders
 
 } //GameState
