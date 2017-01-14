@@ -3,6 +3,7 @@ package entity;
 import luxe.Sprite;
 import luxe.Vector;
 import luxe.Color;
+import luxe.collision.Collision;
 
 import component.Controls;
 
@@ -28,6 +29,7 @@ class Player extends Sprite {
 
         velocity.add(acceleration);
         pos.add(velocity);
+        //resolve collisions HERE
         velocity.multiply(new Vector(decel, decel));
         if(Math.abs(velocity.x) < 0.01) velocity.x = 0;
         if(Math.abs(velocity.y) < 0.01) velocity.y = 0;

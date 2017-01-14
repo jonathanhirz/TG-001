@@ -7,6 +7,7 @@ import luxe.Color;
 import luxe.Vector;
 import luxe.tilemaps.Tilemap;
 import luxe.importers.tiled.*;
+import luxe.collision.shapes.Polygon;
 
 import entity.*;
 
@@ -28,6 +29,7 @@ class GameState extends State {
     override function onenter<T>( _value:T ) {
 
         create_tilemap();
+        create_tilemap_colliders();
         player = new Player();
 
     } //onenter
@@ -58,5 +60,21 @@ class GameState extends State {
         map_01.display({ depth : -1 });
     
     } //create_tilemap
+
+    function create_tilemap_colliders() {
+
+        // setup wall collisions, these don't move
+        var bounds = map_01.layer('obstacles').bounds_fitted();
+        for(bound in bounds) {
+            bound.x *= map_01.tile_width;
+            bound.y *= map_01.tile_height;
+            bound.w *= map_01.tile_width;
+            bound.h *= map_01.tile_height;
+            Main.tilemap_colliders.push(Polygon.rectangle(bound.x, bound.y, bound.w, bound.h, false));
+        }
+
+        trace(Main.tilemap_colliders);
+
+    } //create_tilemap_colliders
 
 } //GameState
