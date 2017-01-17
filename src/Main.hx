@@ -10,7 +10,7 @@ class Main extends luxe.Game {
     var machine : States;
     public static var tilemap_colliders : Array<Shape> = [];
     //DEBUG
-    public static var draw_colliders : Bool = false;
+    public static var draw_colliders : Bool = true;
 
     override function config( config:luxe.GameConfig ) {
 
