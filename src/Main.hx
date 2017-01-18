@@ -44,6 +44,15 @@ class Main extends luxe.Game {
 
     } //ready
 
+    override function update( dt:Float ) {
+
+        //DEBUG
+        if(draw_colliders) {
+            for(coll in tilemap_colliders) draw_collider_polygon(cast coll);
+        }
+
+    } //update
+
     override function onkeyup( e:KeyEvent ) {
 
         if(e.keycode == Key.escape) {
@@ -55,14 +64,21 @@ class Main extends luxe.Game {
 
     } //onkeyup
 
-    override function update( dt:Float ) {
+    override function onmousemove( e:MouseEvent ) {
+        mousePos = e.pos;
+        mousePos = Luxe.camera.screen_point_to_world(mousePos);
 
-        //DEBUG
-        if(draw_colliders) {
-            for(coll in tilemap_colliders) draw_collider_polygon(cast coll);
-        }
+    } //onmousemove
 
-    } //update
+    override function onmousedown( e:MouseEvent) {
+        isFiring = true;
+
+    } //onmousedown
+
+    override function onmouseup( e:MouseEvent ) {
+        isFiring = false;
+
+    } //onmouseup
 
     function connect_input() {
 

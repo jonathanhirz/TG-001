@@ -31,5 +31,4 @@ class Controls extends Component {
 
     } //update
 
-
 } //Controls

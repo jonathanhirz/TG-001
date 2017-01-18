@@ -8,6 +8,7 @@ import luxe.collision.shapes.*;
 import luxe.collision.ShapeDrawerLuxe;
 
 import component.Controls;
+import component.Gun;
 
 class Player extends Sprite {
 
@@ -27,6 +28,8 @@ class Player extends Sprite {
             color : new Color().rgb(0x7d8eff)
         });
         add(new Controls());
+        add(new Gun());
+
         player_collider = new Circle(pos.x, pos.y, size.x / 2);
         player_collider_drawer = new ShapeDrawerLuxe();
 
