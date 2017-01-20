@@ -49,7 +49,6 @@ class GameState extends State {
 
     function create_tilemap() {
 
-        // load tilemap
         var res = Luxe.resources.text('assets/map_01.tmx');
         assertnull(res, 'Tilemap not found');
         map_01 = new TiledMap({
@@ -63,7 +62,6 @@ class GameState extends State {
 
     function create_tilemap_colliders() {
 
-        // setup wall collisions, these don't move
         var bounds = map_01.layer('obstacles').bounds_fitted();
         for(bound in bounds) {
             bound.x *= map_01.tile_width;

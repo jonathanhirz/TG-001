@@ -19,7 +19,7 @@ class Bullet extends Sprite {
 
         super({
             name : 'bullet',
-            name_unique : false,
+            name_unique : true,
             size : new Vector(8, 8),
             color : new Color().rgb(0x37ff21),
             visible : false

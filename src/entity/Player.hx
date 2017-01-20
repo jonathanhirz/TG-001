@@ -14,7 +14,7 @@ class Player extends Sprite {
 
     public var acceleration : Vector = new Vector(0, 0);
     var velocity : Vector = new Vector(0, 0);
-    var decel : Float = 0.8;
+    var decel : Vector = new Vector(0.8, 0.8);
 
     var player_collider : Circle;
     var player_collider_drawer : ShapeDrawerLuxe;
@@ -40,7 +40,7 @@ class Player extends Sprite {
         pos.set_xy(player_collider.x, player_collider.y);
         velocity.add(acceleration);
         player_collider.position.add(velocity);
-        velocity.multiply(new Vector(decel, decel));
+        velocity.multiply(decel);
         if(Math.abs(velocity.x) < 0.01) velocity.x = 0;
         if(Math.abs(velocity.y) < 0.01) velocity.y = 0;
 
@@ -56,6 +56,7 @@ class Player extends Sprite {
     function resolve_horizontal_collisions() {
 
         var collisions = Collision.shapeWithShapes(player_collider, Main.tilemap_colliders);
+        
         if(collisions.length == 1) {
             player_collider.position.x += collisions.get(0).separationX;
         }

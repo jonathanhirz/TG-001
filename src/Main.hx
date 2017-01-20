@@ -2,6 +2,7 @@ import states.*;
 
 import luxe.GameConfig;
 import luxe.Input;
+import luxe.Vector;
 import luxe.States;
 import luxe.collision.shapes.*;
 
@@ -9,8 +10,9 @@ class Main extends luxe.Game {
 
     var machine : States;
     public static var tilemap_colliders : Array<Shape> = [];
-    //DEBUG
     public static var draw_colliders : Bool = true;
+    public static var mouse_pos : Vector;
+    public static var is_firing : Bool = false;
 
     override function config( config:luxe.GameConfig ) {
 
@@ -46,7 +48,6 @@ class Main extends luxe.Game {
 
     override function update( dt:Float ) {
 
-        //DEBUG
         if(draw_colliders) {
             for(coll in tilemap_colliders) draw_collider_polygon(cast coll);
         }
@@ -65,36 +66,35 @@ class Main extends luxe.Game {
     } //onkeyup
 
     override function onmousemove( e:MouseEvent ) {
-        mousePos = e.pos;
-        mousePos = Luxe.camera.screen_point_to_world(mousePos);
+        mouse_pos = e.pos;
+        mouse_pos = Luxe.camera.screen_point_to_world(mouse_pos);
 
     } //onmousemove
 
     override function onmousedown( e:MouseEvent) {
-        isFiring = true;
+        if(e.button == MouseButton.left) is_firing = true;
 
     } //onmousedown
 
     override function onmouseup( e:MouseEvent ) {
-        isFiring = false;
+        if(e.button == MouseButton.left) is_firing = false;
 
     } //onmouseup
 
     function connect_input() {
 
-        // Luxe.input.bind_key('up', Key.up);
+        Luxe.input.bind_key('up', Key.up);
         Luxe.input.bind_key('up', Key.key_w);
-        // Luxe.input.bind_key('right', Key.right);
+        Luxe.input.bind_key('right', Key.right);
         Luxe.input.bind_key('right', Key.key_d);
-        // Luxe.input.bind_key('down', Key.down);
+        Luxe.input.bind_key('down', Key.down);
         Luxe.input.bind_key('down', Key.key_s);
-        // Luxe.input.bind_key('left', Key.left);
+        Luxe.input.bind_key('left', Key.left);
         Luxe.input.bind_key('left', Key.key_a);
         Luxe.input.bind_key('space', Key.space);
 
     } //connect_input
 
-    //DEBUG
     function draw_collider_polygon(poly:Polygon) {
 
         var geom = Luxe.draw.poly({
