@@ -55,8 +55,7 @@ class Player extends Sprite {
 
     function resolve_horizontal_collisions() {
 
-        var collisions = Collision.shapeWithShapes(player_collider, Main.tilemap_colliders);
-        
+        var collisions = Collision.shapeWithShapes(player_collider, Main.tilemap_colliders);        
         if(collisions.length == 1) {
             player_collider.position.x += collisions.get(0).separationX;
         }
