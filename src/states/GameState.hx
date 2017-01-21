@@ -29,7 +29,7 @@ class GameState extends State {
     override function onenter<T>( _value:T ) {
 
         create_tilemap();
-        create_tilemap_colliders();
+        // create_tilemap_colliders();
         player = new Player();
 
     } //onenter
@@ -44,6 +44,8 @@ class GameState extends State {
     override function update( dt:Float ) {
 
         Luxe.camera.center.weighted_average_xy(player.pos.x, player.pos.y, 5);
+
+        trace(tiled_tile_is_collider(map_01, 'ground', player.pos.x, player.pos.y));
 
     } //update
 
@@ -72,5 +74,23 @@ class GameState extends State {
         }
 
     } //create_tilemap_colliders
+
+    function tiled_tile_is_collider( _tilemap:TiledMap, _layer:String, _position_x:Float, _position_y:Float ) : Bool {
+
+        var tile_coordinates = _tilemap.tile_coord(_position_x, _position_y);
+        if(_tilemap.inside(Std.int(tile_coordinates.x), Std.int(tile_coordinates.y))) {
+            var current_tile_id : Int = _tilemap.tile_at_pos(_layer, _position_x, _position_y).id - 1;
+            for(tiled_tileset in _tilemap.tiledmap_data.tilesets) {
+                for(tiled_tile in tiled_tileset.property_tiles) {
+                    if(current_tile_id == tiled_tile.id) {
+                        return tiled_tile.properties.exists("collider");
+                    }
+                }
+            }
+        }
+
+        return false;
+
+    } //tiled_tile_is_collider
 
 } //GameState

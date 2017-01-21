@@ -26,8 +26,8 @@ class Controls extends Component {
 
     override function update( dt:Float ) {
 
-        player.acceleration.y = (-Bass.BoolToInt(Luxe.input.inputdown("up")) + Bass.BoolToInt(Luxe.input.inputdown("down"))) * speed;
-        player.acceleration.x = (-Bass.BoolToInt(Luxe.input.inputdown("left")) + Bass.BoolToInt(Luxe.input.inputdown("right"))) * speed;
+        player.acceleration.y = (-Bass.bool_to_int(Luxe.input.inputdown("up")) + Bass.bool_to_int(Luxe.input.inputdown("down"))) * speed;
+        player.acceleration.x = (-Bass.bool_to_int(Luxe.input.inputdown("left")) + Bass.bool_to_int(Luxe.input.inputdown("right"))) * speed;
 
     } //update
 
