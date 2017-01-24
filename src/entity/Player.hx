@@ -7,7 +7,7 @@ import luxe.Color;
 import luxe.tilemaps.Tilemap;
 import luxe.importers.tiled.*;
 import luxe.collision.Collision;
-import luxe.collision.shapes.Circle;
+import luxe.collision.shapes.*;
 import luxe.collision.ShapeDrawerLuxe;
 import slappy.Bass;
 
@@ -48,21 +48,41 @@ class Player extends Sprite {
         velocity.add(acceleration);
         player_collider.position.add(velocity);
 
-        resolve_horizontal_collisions();
-        resolve_vertical_collisions();
+        resolve_collisions_basic();
+        // resolve_horizontal_collisions();
+        // resolve_vertical_collisions();
 
         pos.set_xy(player_collider.position.x, player_collider.position.y);
         velocity.multiply(decel);
         if(Math.abs(velocity.x) < 0.01) velocity.x = 0;
-        if(Math.abs(velocity.y) < 0.01) velocity.y = 0;
-
-        
+        if(Math.abs(velocity.y) < 0.01) velocity.y = 0;        
 
         if(Main.draw_colliders) {
             player_collider_drawer.drawCircle(player_collider);
         }
 
     } //update
+
+    function resolve_collisions_basic() {
+
+        var collisions = Collision.shapeWithShapes(player_collider, Main.tilemap_colliders);
+        for(collision in collisions) {
+
+            if(collision.separationX < collision.separationY) {
+                player_collider.position.x += collision.separationX;
+            }
+            if(collision.separationY < collision.separationX) {
+                player_collider.position.y += collision.separationY;
+            }
+
+
+            // player_collider.position.x += collision.separationX;
+            // if(collision.unitVectorX != 0) velocity.x = 0;
+            // player_collider.position.y += collision.separationY;
+            // if(collision.unitVectorY != 0) velocity.y = 0;
+        }
+
+    } //resolve_collisions_basic
 
     function resolve_horizontal_collisions() {
 
