@@ -66,21 +66,46 @@ class Player extends Sprite {
     function resolve_collisions_basic() {
 
         var collisions = Collision.shapeWithShapes(player_collider, Main.tilemap_colliders);
+
         for(collision in collisions) {
+            if(Math.abs(collision.unitVectorX) > 0) velocity.x == 0;
+            if(Math.abs(collision.unitVectorY) > 0) velocity.y == 0;
+            player_collider.position.x += collision.separationX;
+            player_collider.position.y += collision.separationY;
+            
 
-            if(collision.separationX < collision.separationY) {
-                player_collider.position.x += collision.separationX;
-            }
-            if(collision.separationY < collision.separationX) {
-                player_collider.position.y += collision.separationY;
-            }
-
-
-            // player_collider.position.x += collision.separationX;
-            // if(collision.unitVectorX != 0) velocity.x = 0;
-            // player_collider.position.y += collision.separationY;
-            // if(collision.unitVectorY != 0) velocity.y = 0;
+            if(collisions.length > 1) {
+                if(Math.abs(collisions.get(0).unitVectorY) == 0 && Math.abs(collisions.get(1).unitVectorY) == 0) {
+                    player_collider.position.x += collisions.get(0).separationX;
+                    velocity.x == 0;
+                }
+            } 
         }
+
+        
+
+        // for(collision in collisions) {
+
+        //     if(Math.abs(collision.unitVectorX) > 1) velocity.x == 0;
+        //     if(Math.abs(collision.unitVectorY) > 1) velocity.y == 0;
+
+        //     player_collider.position.x += collision.separationX;
+        //     player_collider.position.y += collision.separationY;
+
+        //     // if(collisions.length == 1) {
+        //     //     player_collider.position.x += collision.separationX;
+        //     //     player_collider.position.y += collision.separationY;
+        //     // }
+
+        //     // if(collisions.length > 1) {
+        //     //     if(Math.abs(collision.separationX) < Math.abs(collision.separationY)) {
+        //     //         player_collider.position.x += collision.separationX;
+        //     //     }
+        //     //     if(Math.abs(collision.separationY) < Math.abs(collision.separationX)) {
+        //     //         player_collider.position.y += collision.separationY;
+        //     //     }
+        //     // }
+        // }
 
     } //resolve_collisions_basic
 
